@@ -76,11 +76,11 @@
                                                 @if (strpos($file, '.jpg') !== false || strpos($file, '.jpeg') !== false || strpos($file, '.JPG') !== false || strpos($file, '.PNG') !== false || strpos($file, '.png') !== false || strpos($file, '.gif') !== false)
                                                     <div class="col" style="text-align: center;">  
                                                         <!-- Modal action -->
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalId">
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalId-{{$file->id}}">
                                                             <img src="{{$file->archivo}}" alt="" width="80">
                                                         </a>
                                                         <!-- Modal Body -->
-                                                        <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                                        <div class="modal fade" id="modalId-{{$file->id}}" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -107,7 +107,7 @@
                                                     </div>
                                                 @else
                                                     <div class="col" style="text-align: center;"> 
-                                                        <a href="{{$file->archivo}}" download >
+                                                        <a href="" download >
                                                             {{$file->archivo}}
                                                         </a>
                                                         <br>
