@@ -90,7 +90,7 @@ class TicketsController extends Controller
         return view('tickets.editarticket', compact('ticket','users','estados','prioridades','adjuntos'));
     }
 
-    public function guardarcambios(Request $request){
+    public function guardarcambiosticket(Request $request){
         $this->validate($request,[
             'id' => 'required',
             'id_user' => 'required',
@@ -99,6 +99,7 @@ class TicketsController extends Controller
             'descripcion' => 'required',
             'id_estado' => 'required|regex:/^[0-9]{1}$/',
             'id_prioridad' => 'required|regex:/^[0-9]{1}$/',
+            'updated_by' => 'required'
             ]);
             $id = $request->id;
             $id_user = $request->id_user;
@@ -107,6 +108,7 @@ class TicketsController extends Controller
             $asignado = $request->asignado;
             $titulo = $request->titulo;
             $descripcion = $request->descripcion;
+            $actualizado = $request->updated_by;
 
             $ticket = Ticket::where('id',$id)->first();
 
@@ -116,6 +118,7 @@ class TicketsController extends Controller
             $ticket->asignado = $asignado;
             $ticket->titulo = $titulo;
             $ticket->descripcion = $descripcion;
+            $ticket->updated_by = $actualizado;
             $ticket->save();
 
             if($request->hasfile('adjuntos')){
@@ -137,6 +140,7 @@ class TicketsController extends Controller
                     $adjunto->save();
                 }
             }
+            return redirect()->back()->with('actualizado','Ticket Actualizado');
     }
 
     

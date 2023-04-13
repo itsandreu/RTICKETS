@@ -43,6 +43,7 @@
                                     <th scope="col" style="text-align: center;">Creado</th>
                                     <th scope="col" style="text-align: center;">Titulo</th>
                                     <th scope="col" style="text-align: center;">Descripcion</th>
+                                    <th scope="col" style="text-align: center;">Actualizado Ultima vez</th>
                                     <th scope="col" style="text-align: center;">Adjuntos</th>
                                     <th scope="col" style="text-align: center;"><i class="bi bi-gear-fill">&nbsp;&nbsp;&nbsp;&nbsp;</i>Acciones</th>
                                 </tr>
@@ -73,7 +74,8 @@
                                     <td>{{$ticket->created_at}}</td>
                                     <td>{{$ticket->titulo}}</td>
                                     <td>{{$ticket->descripcion}}</td>
-                                    <td style="min-width: 400px;">
+                                    <td style="min-width: 200px;">{{$ticket->actualizado->name}} {{$ticket->actualizado->apellidos}}</td>
+                                    <td style="min-width: 250px;">
                                         @foreach($ticket->adjuntos as $adjunto)
                                             {{ $adjunto->nombreoriginal }}<br>
                                         @endforeach

@@ -19,7 +19,7 @@ class UsersController extends Controller
         $consulta = User::withTrashed()->where('id', $id)->first();
         return view('users.editaruser', compact('consulta'));
     }
-    public function guardarcambios(Request $request){
+    public function guardarcambiosuser(Request $request){
         
         $request->validate([
             'name' => 'required',

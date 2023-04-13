@@ -1,7 +1,7 @@
 @extends('template.index')
 
 @section('contenido')
-<form action="{{ route('guardarcambios') }}" method="post" enctype='multipart/form-data'>
+<form action="{{ route('guardarcambiosuser') }}" method="post" enctype='multipart/form-data'>
     @csrf
     <div class="row">
         <div class="col-sm align-middle">

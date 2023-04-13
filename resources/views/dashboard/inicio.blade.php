@@ -15,7 +15,7 @@
 @endif
 <div class="row m-3 p-3">
     <div class=" col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 50rem; background-color:#ffee32"">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#ffee32"">
             <div class=" card-header" style="text-align: center;">
             <b>TICKETS</b>
             </div>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 50rem; background-color:#52b788">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#52b788">
             <div class="card-header" style="text-align: center;">
             <b>ABIERTOS</b>
             </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 50rem; background-color:#b5e2fa">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#b5e2fa">
             <div class="card-header" style="text-align: center;">
             <b>EN PROCESO</b>
             </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 50rem; background-color:#ff99ac">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#ff99ac">
             <div class="card-header" style="text-align: center;">
             <b>CERRADOS</b>
             </div>
@@ -77,7 +77,7 @@
 </div>
 <div class="row m-3 p-3">
     <div class=" col-sm m-3 rounded-end rounded-start border-light shadow align-items-center">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 45rem; background-color:#83c5be"">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#83c5be"">
             <div class=" card-header" style="text-align: center;">
             <b>USUARIOS</b>
             </div>
@@ -96,7 +96,7 @@
         </div>
     </div>
     <div class=" col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 45rem; background-color:#f6cb52"">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#f6cb52"">
             <div class=" card-header" style="text-align: center;">
             <b>USUARIOS DESACTIVADOS</b>
             </div>

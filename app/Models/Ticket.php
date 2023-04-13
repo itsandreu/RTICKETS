@@ -10,7 +10,7 @@ class Ticket extends Model
     use HasFactory;
     protected $table = 'tickets';
     protected $primaryKey ='id';
-    protected $fillable =['id','id_user','asignado','titulo','descripcion','id_estado','id_prioridad'];
+    protected $fillable =['id','id_user','asignado','titulo','descripcion','id_estado','id_prioridad','updated_by'];
 
     public function usuario()
     {
@@ -36,4 +36,9 @@ class Ticket extends Model
     {
         return $this->hasMany(Adjunto::class, 'id_ticket');
     }
+    public function actualizado()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
 }

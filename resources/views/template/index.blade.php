@@ -64,7 +64,7 @@ $url_base = "/RTICKETS/public/"
         font-weight: bold;
     }
 </style>
-<body style="background-color: #e7d8c9;">
+<body style="background-color: #edede9;">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
