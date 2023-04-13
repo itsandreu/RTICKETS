@@ -73,7 +73,7 @@
                                     <td>{{$ticket->created_at}}</td>
                                     <td>{{$ticket->titulo}}</td>
                                     <td>{{$ticket->descripcion}}</td>
-                                    <td>
+                                    <td style="min-width: 400px;">
                                         @foreach($ticket->adjuntos as $adjunto)
                                             {{ $adjunto->nombreoriginal }}<br>
                                         @endforeach

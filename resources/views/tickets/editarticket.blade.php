@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{ route('guardarcambios') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-sm align-middle">
@@ -43,6 +43,13 @@
                                         @endforeach
                                     </select>
                                 <br>
+                                <label for="adjuntos" class="form-label"><h5>Añadir Adjuntos:</h5></label>
+                                        @if ($errors->first('adjuntos'))
+                                        <p class="text-danger"> {{$errors->first('adjuntos')}}</p>
+                                        @endif
+                                    </label>
+                                    <input class="form-control" type="file" id="adjuntos" name="adjuntos[]" multiple>
+                                <br>
                             </div>
                             <div class="col">
                             <label for="asignado"><h5>Asignado a:</h5>
@@ -67,8 +74,9 @@
                                     @if ($errors->first('descripcion'))
                                         <p class="text-danger"> {{$errors->first('descripcion')}}</p>
                                     @endif
-                                    <textarea class="form-control" id="descripcion" value="{{$ticket->descripcion}}" name="descripcion" rows="6">{{$ticket->descripcion}}</textarea>
+                                    <textarea class="form-control" id="descripcion" value="{{$ticket->descripcion}}" name="descripcion" rows="9">{{$ticket->descripcion}}</textarea>
                                     <br>
+
                                     
                                     <div class="row">
                                         @if ($ticket->adjuntos != '')
@@ -76,9 +84,20 @@
                                                 @if (strpos($file, '.jpg') !== false || strpos($file, '.jpeg') !== false || strpos($file, '.JPG') !== false || strpos($file, '.PNG') !== false || strpos($file, '.png') !== false || strpos($file, '.gif') !== false)
                                                     <div class="col" style="text-align: center;">  
                                                         <!-- Modal action -->
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalId-{{$file->id}}">
-                                                            <img src="{{$file->archivo}}" alt="" width="80">
-                                                        </a>
+                                                        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                                            <div class="image-wrapper">
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalId-{{$file->id}}">
+                                                                    <img src="{{$file->archivo}}" alt="" width="80">
+                                                                </a>
+                                                                <br>
+                                                                <br>
+                                                                <a href="{{ route('eliminararchivo',['id'=>$file->id]) }}">
+                                                                    <button type="button" class="btn btn-outline-dark">
+                                                                        <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el archivo?')"></i>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                         <!-- Modal Body -->
                                                         <div class="modal fade" id="modalId-{{$file->id}}" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
@@ -96,27 +115,23 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    
-                                                        <br>
-                                                        <br>
-                                                            <button type="button" class="btn btn-outline-dark">
-                                                                <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el archivo?')"></i>
-                                                            </button>
-                                                        </a>
                                                         <br>
                                                     </div>
                                                 @else
                                                     <div class="col" style="text-align: center;"> 
-                                                        <a href="" download >
-                                                            {{$file->archivo}}
-                                                        </a>
-                                                        <br>
-                                                        <a href="">
-                                                            <button type="button" class="btn btn-outline-dark">
-                                                                <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el archivo?')"></i>
-                                                            </button>
-                                                        </a>
-                                                        <br>
+                                                        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                                            <div class="image-wrapper">
+                                                                <a href="{{$file->archivo}}" download >
+                                                                    {{$file->archivo}}
+                                                                </a>
+                                                                <br>
+                                                                <a href="">
+                                                                    <button type="button" class="btn btn-outline-dark">
+                                                                        <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el archivo?')"></i>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 @endif
                                             @endforeach

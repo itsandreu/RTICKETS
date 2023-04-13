@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Estado;
 use App\Models\Prioridad;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 
@@ -89,8 +90,78 @@ class TicketsController extends Controller
         return view('tickets.editarticket', compact('ticket','users','estados','prioridades','adjuntos'));
     }
 
+    public function guardarcambios(Request $request){
+        $this->validate($request,[
+            'id' => 'required',
+            'id_user' => 'required',
+            'asignado' => 'required',
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'id_estado' => 'required|regex:/^[0-9]{1}$/',
+            'id_prioridad' => 'required|regex:/^[0-9]{1}$/',
+            ]);
+            $id = $request->id;
+            $id_user = $request->id_user;
+            $id_estado = $request->id_estado;
+            $id_prioridad = $request->id_prioridad;
+            $asignado = $request->asignado;
+            $titulo = $request->titulo;
+            $descripcion = $request->descripcion;
+
+            $ticket = Ticket::where('id',$id)->first();
+
+            $ticket->id_user = $id_user;
+            $ticket->id_estado = $id_estado;
+            $ticket->id_prioridad = $id_prioridad;
+            $ticket->asignado = $asignado;
+            $ticket->titulo = $titulo;
+            $ticket->descripcion = $descripcion;
+            $ticket->save();
+
+            if($request->hasfile('adjuntos')){
+                $adjuntos = $request->file('adjuntos');
+    
+                for ($i = 0; $i < count($adjuntos); $i++){
+                    $rutasdb = "/adjuntos/";
+                    $ruta = "/Applications/XAMPP/xamppfiles/htdocs/Rtickets/public/adjuntos";
+    
+                    $filename = $id . $adjuntos[$i]->getClientOriginalName();
+                    $rutasdb .= $filename;
+                    
+                    $adjuntos[$i]->move($ruta,$filename);
+    
+                    $adjunto = new Adjunto;
+                    $adjunto->id_ticket = $id;
+                    $adjunto->nombreoriginal = $filename;
+                    $adjunto->archivo = $rutasdb;
+                    $adjunto->save();
+                }
+            }
+    }
+
+    
     public function eliminarticket($id){
-        Ticket::find($id)->forceDelete();
+        $adjuntos = Adjunto::where('id_ticket',$id)->get();
+        foreach ($adjuntos as $adjunto) {
+            $file_path = public_path().$adjunto->archivo;
+            if(File::exists($file_path)) {
+                File::delete($file_path);
+            }
+            $adjunto->delete();
+        }
+        Ticket::find($id)->forceDelete(); 
         return redirect()->route('tickets');
+    }
+
+    public function eliminararchivo($id){
+        $adjuntos = Adjunto::where('id',$id)->get();
+        foreach ($adjuntos as $adjunto) {
+            $file_path = public_path().$adjunto->archivo;
+            if(File::exists($file_path)) {
+                File::delete($file_path);
+            }
+            $adjunto->delete();
+        }
+        return redirect()->back();
     }
 }

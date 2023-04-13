@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function(){
     Route::post('guardarticket', [TicketsController::class, 'guardarticket'])->name('guardarticket');
     Route::get('eliminarticket/{id}', [TicketsController::class, 'eliminarticket'])->name('eliminarticket');
     Route::get('editarticket/{id}', [TicketsController::class, 'editarticket'])->name('editarticket');
+    Route::get('eliminararchivo/{id}', [TicketsController::class, 'eliminararchivo'])->name('eliminararchivo');
 
     
     
