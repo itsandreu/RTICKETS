@@ -37,9 +37,9 @@ Route::middleware('auth')->group(function(){
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     //usuarios
-    
-    Route::get('register',[AuthController::class,'register'])->name('register');
-    Route::post('register',[AuthController::class,'registerverify'])->name('register.verify');
+
+    //Route::get('register',[AuthController::class,'register'])->name('register');
+    //Route::post('register',[AuthController::class,'registerverify'])->name('register.verify');
 
     Route::get('users', [UsersController::class, 'verusers'])->name('users');
     Route::get('editarusers/{id}', [UsersController::class, 'editarusers'])->name('editarusers');
@@ -59,5 +59,10 @@ Route::middleware('auth')->group(function(){
     Route::get('eliminararchivo/{id}', [TicketsController::class, 'eliminararchivo'])->name('eliminararchivo');
     Route::post('guardarcambiosticket', [TicketsController::class, 'guardarcambiosticket'])->name('guardarcambiosticket');
     
-    
+});
+
+Route::middleware(['auth', 'can:admin-only'])->group(function () {
+    // rutas protegidas para el usuario Administrador con el id 1
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'registerverify'])->name('register.verify');
 });

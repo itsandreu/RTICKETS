@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col">
                                     <input type="hidden" name="updated_by" value="{{ Auth::user()->id }}">
-                                    
+
                                     <label for="id"><h5>Nº Ticket:</h5></label>
                                     <br>
                                     <input type="numeric" class="form-control" name="id"  value="{{$ticket->id}}" readonly='readonly'>
@@ -93,7 +93,7 @@
                                                         <td class="justify-content-center">
                                                             &nbsp;
                                                             <a href="{{ route('eliminararchivo',['id'=>$file->id]) }}">
-                                                                <button type="button" class="btn btn-outline-dark">
+                                                                <button type="button" class="btn btn-outline-dark eliminar-archivo">
                                                                     <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el ticket?')"></i>
                                                                 </button>
                                                             </a>

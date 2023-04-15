@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Adjunto;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Estado;
 use App\Models\Prioridad;
 use Illuminate\Support\Facades\File;
-
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 
 class TicketsController extends Controller
 {
@@ -75,7 +76,8 @@ class TicketsController extends Controller
                 $adjunto->save();
             }
         }
-        return redirect()->route('tickets')->with('success','Ticket Creado correctamente');
+        Alert::toast('Nuevo Ticket Creado', 'success');
+        return redirect()->route('tickets');
     }
 
     public function editarticket($id){
@@ -153,8 +155,11 @@ class TicketsController extends Controller
             }
             $adjunto->delete();
         }
+
+        Alert::toast('Ticket Eliminado', 'success');
+
         Ticket::find($id)->forceDelete(); 
-        return redirect()->route('tickets');
+        return redirect()->route('tickets')->with('message', 'Ticket Eliminado');
     }
 
     public function eliminararchivo($id){

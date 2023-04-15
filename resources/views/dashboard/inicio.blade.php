@@ -26,6 +26,10 @@
             <a href="{{ route('crearticket')}}">
                 <button type="button" class="btn btn-success"><b>Crear Nuevo Ticket</b></button>
             </a>
+            &nbsp;&nbsp;
+            <a href="{{ route('tickets')}}">
+                <button type="button" class="btn btn-primary"><b>Ver</b></button>
+            </a>
         </div>
         </div>
     </div>

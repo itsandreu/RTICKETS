@@ -1,19 +1,5 @@
 @extends('template.index')
 @section('contenido')
-@if (session()->has('mensaje_eliminado'))
-<div class="alert alert-warning pb-1 ms-5 me-5"  role="alert">
-    <h5 style="text-align: center;">{{ Session('mensaje_eliminado') }}</h3>
-</div>
-@elseif (session()->has('actualizado'))
-<div class="alert alert-warning pb-1 ms-5 me-5"  role="alert">
-    <h5 style="text-align: center;">{{ Session('actualizado') }}</h3>
-</div>
-@endif
-@if (session()->has('success'))
-<div class="alert alert-warning pb-1 ms-5 me-5"  role="alert">
-    <h5 style="text-align: center;">{{ Session('success') }}</h3>
-</div>
-@endif
 <div class="card shadow mb-4">
     <div class="card-header py-3 text-center text-color-black" style="background-color:#1b998b;">
         
@@ -74,7 +60,11 @@
                                     <td>{{$ticket->created_at}}</td>
                                     <td>{{$ticket->titulo}}</td>
                                     <td>{{$ticket->descripcion}}</td>
+                                    @if ($ticket->updated_by == '')
+                                        <td style="min-width: 200px;"></td>
+                                    @else
                                     <td style="min-width: 200px;">{{$ticket->actualizado->name}} {{$ticket->actualizado->apellidos}}</td>
+                                    @endif
                                     <td style="min-width: 250px;">
                                         @foreach($ticket->adjuntos as $adjunto)
                                             {{ $adjunto->nombreoriginal }}<br>
@@ -94,9 +84,9 @@
                                             </button>
                                             </a>
                                             &nbsp;
-                                            <a href="{{ route('eliminarticket',['id'=>$ticket->id]) }}">
+                                            <a onclick="confirmation(event)" href="{{ route('eliminarticket',['id'=>$ticket->id]) }}">
                                             <button type="button" class="btn btn-outline-dark">
-                                                    <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el ticket?')"></i>
+                                                    <i class="bi bi-trash3"></i>
                                             </button>
                                             </a>
                                         </div>
@@ -112,3 +102,22 @@
     </div>
 </div>
 @stop
+<script>
+    function confirmation(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+        console.log(urlToRedirect); 
+        swal({
+            title: "¿Seguro que desea eliminar el ticket?",
+            text: "No podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel) => {
+            if (willCancel) {
+                window.location.href = urlToRedirect;
+            }  
+        });
+    }
+</script>
