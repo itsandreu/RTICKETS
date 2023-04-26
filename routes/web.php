@@ -27,7 +27,8 @@ Route::get('/', function () {
 Route::prefix('auth')->group(function(){
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'loginVerify'])->name('login.verify');
-    Route::post('signout',[AuthController::class,'signout'])->name('signout');
+    Route::get('signout',[AuthController::class,'signout'])->name('signout');
+    
 });
 
 //PROTEGIDOS
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function(){
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     //usuarios
-
+    
     //Route::get('register',[AuthController::class,'register'])->name('register');
     //Route::post('register',[AuthController::class,'registerverify'])->name('register.verify');
 

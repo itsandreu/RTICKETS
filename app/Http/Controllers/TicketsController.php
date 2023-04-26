@@ -76,7 +76,7 @@ class TicketsController extends Controller
                 $adjunto->save();
             }
         }
-        Alert::toast('Nuevo Ticket Creado', 'success');
+        Alert::success('Creado!','Ticket Creado Correctamente');
         return redirect()->route('tickets');
     }
 
@@ -142,7 +142,8 @@ class TicketsController extends Controller
                     $adjunto->save();
                 }
             }
-            return redirect()->back()->with('actualizado','Ticket Actualizado');
+            Alert::toast('Actualizado','success');
+            return redirect()->back();
     }
 
     
@@ -155,10 +156,7 @@ class TicketsController extends Controller
             }
             $adjunto->delete();
         }
-
-        Alert::toast('Ticket Eliminado', 'success');
-
-        Ticket::find($id)->forceDelete(); 
+        Ticket::find($id)->forceDelete();
         return redirect()->route('tickets')->with('message', 'Ticket Eliminado');
     }
 

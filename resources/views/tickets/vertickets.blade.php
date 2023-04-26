@@ -1,5 +1,7 @@
 @extends('template.index')
 @section('contenido')
+@include('sweetalert::alert')
+
 <div class="card shadow mb-4">
     <div class="card-header py-3 text-center text-color-black" style="background-color:#1b998b;">
         
@@ -71,23 +73,17 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                        <div class="btn-group ">
-                                            <a href="">
-                                            <button type="button" class="btn btn-outline-dark">
+                                        <div class="btn-group">
+                                            <a class="btn btn-outline-dark" href="">
                                                 <i class="bi bi-eyeglasses"></i>
-                                            </button>
                                             </a>
                                             &nbsp;
-                                            <a href="{{ route('editarticket',['id'=>$ticket->id]) }}">
-                                            <button type="button" class="btn btn-outline-dark">
+                                            <a class="btn btn-outline-dark" href="{{ route('editarticket',['id'=>$ticket->id]) }}">
                                                 <i class="bi bi-brush"></i>
-                                            </button>
                                             </a>
                                             &nbsp;
-                                            <a onclick="confirmation(event)" href="{{ route('eliminarticket',['id'=>$ticket->id]) }}">
-                                            <button type="button" class="btn btn-outline-dark">
-                                                    <i class="bi bi-trash3"></i>
-                                            </button>
+                                            <a class="btn btn-outline-dark" onclick="confirmation(event)" href="{{ route('eliminarticket',['id'=>$ticket->id]) }}">
+                                                <i class="bi bi-trash3"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -102,22 +98,4 @@
     </div>
 </div>
 @stop
-<script>
-    function confirmation(ev) {
-        ev.preventDefault();
-        var urlToRedirect = ev.currentTarget.getAttribute('href');  
-        console.log(urlToRedirect); 
-        swal({
-            title: "¿Seguro que desea eliminar el ticket?",
-            text: "No podrás recuperarlo!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willCancel) => {
-            if (willCancel) {
-                window.location.href = urlToRedirect;
-            }  
-        });
-    }
-</script>
+

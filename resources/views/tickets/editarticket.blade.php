@@ -1,11 +1,7 @@
 @extends('template.index')
 
 @section('contenido')
-@if (session()->has('actualizado'))
-<div class="alert alert-warning pb-1 ms-5 me-5"  role="alert">
-    <h5 style="text-align: center;">{{ Session('actualizado') }}</h3>
-</div>
-@endif
+@include('sweetalert::alert')
 <form action="{{ route('guardarcambiosticket') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
@@ -94,7 +90,7 @@
                                                             &nbsp;
                                                             <a href="{{ route('eliminararchivo',['id'=>$file->id]) }}">
                                                                 <button type="button" class="btn btn-outline-dark eliminar-archivo">
-                                                                    <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el ticket?')"></i>
+                                                                    <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el Archivo?')"></i>
                                                                 </button>
                                                             </a>
                                                         </td>
@@ -102,7 +98,7 @@
                                                     @else
                                                     <tr style="text-align: center; background-color:#edf2f4;">
                                                         <td>
-                                                            <a href="{{$file->archivo}}" download >
+                                                            <a href="{{$file->archivo}}" download>
                                                                 <img src="/adjuntos/archivo.png" alt="" width="80" title="{{$file->nombreoriginal}}">
                                                             </a>
                                                         </td>
@@ -111,7 +107,7 @@
                                                             &nbsp;
                                                             <a href="{{ route('eliminararchivo',['id'=>$file->id]) }}">
                                                                 <button type="button" class="btn btn-outline-dark">
-                                                                    <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el ticket?')"></i>
+                                                                    <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el Archivo?')"></i>
                                                                 </button>
                                                             </a>
                                                         </td>

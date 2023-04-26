@@ -15,8 +15,8 @@
 @endif
 <div class="row m-3 p-3">
     <div class=" col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#ffee32"">
-            <div class=" card-header" style="text-align: center;">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#ffe566">
+            <div class=" card-header" style="text-align: center; color:black;">
             <b>TICKETS</b>
             </div>
         <div class="card-body">
@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#52b788">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#9AD6AD">
             <div class="card-header" style="text-align: center;">
             <b>ABIERTOS</b>
             </div>
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#b5e2fa">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#f2a65a">
             <div class="card-header" style="text-align: center;">
             <b>EN PROCESO</b>
             </div>
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#ff99ac">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#b08968">
             <div class="card-header" style="text-align: center;">
             <b>CERRADOS</b>
             </div>
@@ -81,7 +81,7 @@
 </div>
 <div class="row m-3 p-3">
     <div class=" col-sm m-3 rounded-end rounded-start border-light shadow align-items-center">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#83c5be"">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#9AD4D6"">
             <div class=" card-header" style="text-align: center;">
             <b>USUARIOS</b>
             </div>
@@ -100,12 +100,12 @@
         </div>
     </div>
     <div class=" col-sm m-3 rounded-end rounded-start border-light shadow">
-        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#f6cb52"">
-            <div class=" card-header" style="text-align: center;">
+        <div class="card text-black shadow mt-3 mb-3" style="max-width: 100%; background-color:#46494c"">
+            <div class=" card-header" style="text-align: center; color:white;">
             <b>USUARIOS DESACTIVADOS</b>
             </div>
         <div class="card-body">
-            <h1 class="card-title" style="text-align: center; color:black">{{ $usersDisabled }}</h1>
+            <h1 class="card-title" style="text-align: center; color:white;">{{ $usersDisabled }}</h1>
         </div>
         <div class="card-footer d-flex justify-content-center">
             <a href="#">

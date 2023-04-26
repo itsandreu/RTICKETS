@@ -17,6 +17,8 @@ $url_base = "/RTICKETS/public/"
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/lumen/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @include('sweetalert::alert')
+
 </head>
 <style>
     nav,
@@ -92,13 +94,13 @@ $url_base = "/RTICKETS/public/"
                             <li class="nav-item p-3 py-md-0"><a href="{{ route('users') }}" class="nav-link text-white"><b>Usuarios</b></a></li>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('assets/ERRE.png')}}" alt="" width="20" height="20">
+                                    <img src="{{ Auth::user()->url_foto }}" alt="" width="20" height="20">
                                     {{ Auth::user()->name }}&nbsp;{{ Auth::user()->apellidos }}
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Perfil</a></li>
                                     <li><a class="dropdown-item" href="#">Mis Tickets</a></li>
-                                    <li><a class="dropdown-item post-link" data-action="{{ route('signout') }}" href="#">Cerrar Sesion</a></li>
+                                    <li><a class="dropdown-item post-link" data-action="" href="{{ route('signout') }}">Cerrar Sesion</a></li>
                                 </ul>
                             </div>
                         </ul>
@@ -125,19 +127,33 @@ $url_base = "/RTICKETS/public/"
                 <h7>Creado por Ricardo Andreu Gimeno</h7>
             </div>
         </footer>
-        @include('sweetalert::alert')
-</body>
-
-
 <!-- Bootstrap JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    function confirmation(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+        console.log(urlToRedirect); 
+        swal({
+            title: "Estas seguro que desea eliminar el ticket?",
+            text: "No podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel) => {
+            if (willCancel) {
+                window.location.href = urlToRedirect;
+            }  
+        });
+    }
+</script>
 <script>
     $(document).ready(function() {
         $('#tickets').DataTable({
@@ -151,4 +167,5 @@ $url_base = "/RTICKETS/public/"
         });
     });
 </script>
+</body>
 </html>
