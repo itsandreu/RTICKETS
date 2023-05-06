@@ -43,7 +43,7 @@
 
                                     <td>{{$ticket->usuario->name}} {{$ticket->usuario->apellidos}}</td>
 
-                                    <td style="background-color: #edf2fb;">{{$ticket->asignadoA->name}} {{$ticket->asignadoA->apellidos}}</td>
+                                    <td style="background-color: #edf2fb; min-width: 130px;">{{$ticket->asignadoA->name}} {{$ticket->asignadoA->apellidos}}</td>
                                     
                                     @if ($ticket->estado->name == 'Abierto')
                                     <td style="background-color: #52b788;">{{$ticket->estado->name}}</td>  
@@ -67,14 +67,14 @@
                                     @else
                                     <td style="min-width: 200px;">{{$ticket->actualizado->name}} {{$ticket->actualizado->apellidos}}</td>
                                     @endif
-                                    <td style="min-width: 250px;">
+                                    <td style="min-width: 200px;">
                                         @foreach($ticket->adjuntos as $adjunto)
                                             {{ $adjunto->nombreoriginal }}<br>
                                         @endforeach
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-outline-dark" href="">
+                                            <a class="btn btn-outline-dark" href="{{ route('verticket',['id'=>$ticket->id]) }}">
                                                 <i class="bi bi-eyeglasses"></i>
                                             </a>
                                             &nbsp;
@@ -82,7 +82,7 @@
                                                 <i class="bi bi-brush"></i>
                                             </a>
                                             &nbsp;
-                                            <a class="btn btn-outline-dark" onclick="confirmation(event)" href="{{ route('eliminarticket',['id'=>$ticket->id]) }}">
+                                            <a class="btn btn-outline-dark" onclick="confirmationdeleteticket(event)" href="{{ route('eliminarticket',['id'=>$ticket->id]) }}">
                                                 <i class="bi bi-trash3"></i>
                                             </a>
                                         </div>

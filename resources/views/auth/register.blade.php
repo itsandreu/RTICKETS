@@ -1,44 +1,5 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <form action="" method="post">
-        @csrf
-        email
-        <br>
-        <input type="email" name="email" value="{{ old('email') }}">
-        @error('email')
-            <small>{{$message}}</small>
-        @enderror
-        <br>
-        Contraseña
-        <br>
-        <input type="password" name="password">
-        @error('password')
-            <small>{{$message}}</small>
-        @enderror
-        <br>
-        Confirmacion contraseña
-        <br>
-        <input type="password" name="password_confirmation">
-        @error('password_confirmation')
-            <small>{{$message}}</small>
-        @enderror
-        <br>
-        <input type="submit" value="Registrarse">
 
-        <div class="mt-3 text-center">
-                <a href="{{ route('login') }}">ingresar</a>
-            </div>
-    </form>
-</body>
-</html> -->
-
+@include('sweetalert::alert')
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -175,7 +136,7 @@
                         <a href="{{route('users')}}">
                         <input type="btn" value="Volver" class="btn float-left login-btn" style="width: 150px;">
                         </a>
-						<input type="submit" value="Login" class="btn float-right login_btn">
+						<input type="submit" value="Registrar" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>

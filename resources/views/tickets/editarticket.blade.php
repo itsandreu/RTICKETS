@@ -88,10 +88,8 @@
                                                         <td>{{$file->nombreoriginal}}</td>
                                                         <td class="justify-content-center">
                                                             &nbsp;
-                                                            <a href="{{ route('eliminararchivo',['id'=>$file->id]) }}">
-                                                                <button type="button" class="btn btn-outline-dark eliminar-archivo">
-                                                                    <i class="bi bi-trash3" onclick="return confirm('¿Quieres Eliminar el Archivo?')"></i>
-                                                                </button>
+                                                            <a class="btn btn-outline-dark" onclick="confirmationdeletefile(event)" href="{{ route('eliminararchivo',['id'=>$file->id]) }}">
+                                                                <i class="bi bi-trash3"></i>
                                                             </a>
                                                         </td>
                                                     </tr>

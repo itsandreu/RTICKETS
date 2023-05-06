@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {

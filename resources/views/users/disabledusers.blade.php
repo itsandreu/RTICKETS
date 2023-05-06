@@ -1,5 +1,6 @@
 @extends('template.index')
 @section('contenido')
+@include('sweetalert::alert')
 <div class="card shadow mb-4">
     <div class="card-header py-3 text-center" style="background-color: #477998;" >
         <h4 class=" justify-content-start ms-0 font-weight-bold text-dark-emphasis" style="color:aliceblue;"><b>USUARIOS DESHABILITADOS</b></h6>
@@ -57,10 +58,9 @@
                                                 </button>
                                             </a>
                                             &nbsp;
-                                            <a href="{{route('activarusers',['id'=>$user->id])}}">
-                                                <button type="button" class="btn btn-outline-dark">
-                                                        <i class="bi bi-eye" onclick="return confirm('¿Quieres Activar el Usuario?')"></i>
-                                                </button>
+                                                <a class="btn btn-outline-dark" onclick="confirmationenableuser(event)" href="{{route('activarusers',['id'=>$user->id])}}">
+                                                        <i class="bi bi-eye"></i>
+                                                </a>
                                             </a>
                                         </div>
                                     </td>

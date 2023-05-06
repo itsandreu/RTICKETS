@@ -1,11 +1,6 @@
 @extends('template.index')
 @section('contenido')
-@if (session('success') && session('usuario'))
-        <div class="alert alert-success pb-1 ms-5 me-5"  role="alert">
-            <h5 style="text-align: center;">{{ Session('success') }}</h3>
-            <h5 style="text-align: center;">{{ Session('usuario') }}</h3>
-        </div>
-    @endif
+@include('sweetalert::alert')
 <div class="card shadow mb-4">
     <div class="card-header py-3 text-center" style="background-color: #477998;" >
         <h4 class=" justify-content-start ms-0 font-weight-bold text-dark-emphasis" style="color:aliceblue;"><b>USUARIOS</b></h6>
@@ -59,11 +54,9 @@
                                             </a>
                                             &nbsp;
                                             @if ($user->id > 1)
-                                            <a href="{{ route('deshabilitarusers',['id'=>$user->id]) }}">
-                                                <button type="button" class="btn btn-outline-dark">
-                                                        <i class="bi bi-eye-slash" onclick="return confirm('¿Quieres Deshabilitar el Usuario?')"></i>
-                                                </button>
-                                            </a>
+                                                <a class="btn btn-outline-dark" onclick="confirmationdiableduser(event)" href="{{ route('deshabilitarusers',['id'=>$user->id]) }}">
+                                                    <i class="bi bi-eye-slash"></i>
+                                                </a>
                                             @endif
                                         </div>
                                     </td>

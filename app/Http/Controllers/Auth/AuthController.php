@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class AuthController extends Controller
@@ -64,7 +65,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-    return redirect()->route('users')->with('success','Usuario registrado correctamente');
+    Alert::Success('Usuario Registrado');
+    return redirect()->route('users');
     }
 
     public function login(){

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Estado;
 use App\Models\Prioridad;
+use App\Models\Comentario;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,6 +18,15 @@ class TicketsController extends Controller
     public function vertickets(){
         $tickets= Ticket::all();
         return view('tickets.vertickets')->with('tickets',$tickets);
+    }
+    public function verticket($id){
+        $ticket = Ticket::where('id',$id)->first();
+        $user = User::withTrashed()->where('id', $id)->first();
+        $prioridades = Prioridad::all();
+        $estados = Estado::all();
+        $adjuntos = Adjunto::where('id_ticket',$id)->get();
+        $comentarios = Comentario::where('id_ticket',$id)->get();
+        return view('tickets.verticket', compact('ticket','user','estados','prioridades','adjuntos','comentarios'));
     }
 
     public function crearticket(){
@@ -157,7 +167,8 @@ class TicketsController extends Controller
             $adjunto->delete();
         }
         Ticket::find($id)->forceDelete();
-        return redirect()->route('tickets')->with('message', 'Ticket Eliminado');
+        
+        return redirect()->route('tickets');
     }
 
     public function eliminararchivo($id){

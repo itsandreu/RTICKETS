@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TicketsController;
@@ -53,13 +54,16 @@ Route::middleware('auth')->group(function(){
     //tickets 
 
     Route::get('tickets', [TicketsController::class, 'vertickets'])->name('tickets');
+    Route::get('verticket/{id}',[TicketsController::class, 'verticket'])->name('verticket');
     Route::get('crearticket', [TicketsController::class, 'crearticket'])->name('crearticket');
     Route::post('guardarticket', [TicketsController::class, 'guardarticket'])->name('guardarticket');
     Route::get('eliminarticket/{id}', [TicketsController::class, 'eliminarticket'])->name('eliminarticket');
     Route::get('editarticket/{id}', [TicketsController::class, 'editarticket'])->name('editarticket');
     Route::get('eliminararchivo/{id}', [TicketsController::class, 'eliminararchivo'])->name('eliminararchivo');
     Route::post('guardarcambiosticket', [TicketsController::class, 'guardarcambiosticket'])->name('guardarcambiosticket');
-    
+
+    //Comentarios
+    Route::post('crearcomentario', [ComentariosController::class, 'crearcomentario'])->name('crearcomentario');
 });
 
 Route::middleware(['auth', 'can:admin-only'])->group(function () {
