@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('comentario');
-            $table->foreignId('id_ticket')->nullable()->constrained('tickets')->onDelete('set null')->onUpdate('set null');
-            $table->foreignId('creado_por')->nullable()->constrained('users')->onDelete('set null')->onUpdate('set null');
+            $table->text('comentario');
+            $table->foreignId('id_ticket')->nullable()->constrained('tickets')->onDelete('cascade')->onUpdate('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('set null');
             $table->timestamps();
         });
     }

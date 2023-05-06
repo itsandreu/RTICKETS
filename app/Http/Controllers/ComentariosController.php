@@ -18,15 +18,15 @@ class ComentariosController extends Controller
 
         //dd($request);
         $titulo = $request->titulo;
-        $comentario = $request->comentario;
+        $comentario_texto = $request->comentario;
         $id_ticket = $request->id_ticket;
         $id_user = $request->id_user;
 
         $comentario = new Comentario;
         $comentario->titulo = $titulo;
-        $comentario->comentario = $comentario;
+        $comentario->comentario = $comentario_texto;
         $comentario->id_ticket = $id_ticket;
-        $comentario->id_user = $id_user;
+        $comentario->user_id = $id_user;
         $comentario->save();
         Alert::success('Creado!','Comentario posteado correctamente');
         return redirect()->route('tickets');

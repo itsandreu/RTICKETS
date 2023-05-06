@@ -170,12 +170,24 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary">Enviar Comentario</button>
                         </div>
-                        </for>
+                        </form>
                 </div>
             </div>
         </div>
+        @foreach ($comentarios as $comentario)
+        <hr size="4" color="red">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td style="width: 100px;"><img src="{{$comentario->usuario->url_foto}}" height="50px;"></td>
+                    <td>{{$comentario->usuario->name}} {{$comentario->usuario->apellidos}}</td>
+                    <td style="width: 1000px;"><b>{{$comentario->titulo}}</b><br>{{$comentario->comentario}}</td>
+                    <td>{{$comentario->created_at}}</td>
+                </tr>
+            </tbody>
+        </table>
+        @endforeach
     </div>
     <div class="card-footer text-white text-muted" style="background-color: #253237;"><!--Escribir texto --></div>
 </div>
-
 @stop

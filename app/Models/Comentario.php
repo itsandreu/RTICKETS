@@ -11,7 +11,7 @@ class Comentario extends Model
     protected $table = 'comentarios';
     protected $primaryKey ='id';
     protected $hidden = ['created_at', 'updated_at'];
-    protected $fillable =['id','titulo','comentario','id_ticket','creado_por'];
+    protected $fillable =['id','titulo','comentario','id_ticket','user_id'];
 
     public function ticket()
     {
@@ -19,6 +19,6 @@ class Comentario extends Model
     }
     public function usuario()
     {
-        return $this->belongsTo(User::class,'creado_por');
+        return $this->belongsTo(User::class,'user_id');
     }
 }

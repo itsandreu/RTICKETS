@@ -30,7 +30,7 @@
                                     <th scope="col" style="text-align: center;">Priodiad</th>
                                     <th scope="col" style="text-align: center;">Creado</th>
                                     <th scope="col" style="text-align: center;">Titulo</th>
-                                    <th scope="col" style="text-align: center;">Descripcion</th>
+                                    <th scope="col-3" style="text-align: center;">Descripcion</th>
                                     <th scope="col" style="text-align: center;">Actualizado Ultima vez</th>
                                     <th scope="col" style="text-align: center;">Adjuntos</th>
                                     <th scope="col" style="text-align: center;"><i class="bi bi-gear-fill">&nbsp;&nbsp;&nbsp;&nbsp;</i>Acciones</th>
@@ -61,7 +61,7 @@
                                     @endif
                                     <td>{{$ticket->created_at}}</td>
                                     <td>{{$ticket->titulo}}</td>
-                                    <td>{{$ticket->descripcion}}</td>
+                                    <td class="text-truncate" style="max-width: 150px;">{{$ticket->descripcion}}</td>
                                     @if ($ticket->updated_by == '')
                                         <td style="min-width: 200px;"></td>
                                     @else
