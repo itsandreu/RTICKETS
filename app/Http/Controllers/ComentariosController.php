@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CrearComentarioRequest;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -9,14 +10,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ComentariosController extends Controller
 {
     //
-    public function crearcomentario(Request $request)
+    public function crearcomentario(CrearComentarioRequest $request)
     {
-        $this->validate($request,[
-            'titulo' => 'required',
-            'comentario' => 'required',
-        ]);
-
-        //dd($request);
         $titulo = $request->titulo;
         $comentario_texto = $request->comentario;
         $id_ticket = $request->id_ticket;

@@ -47,17 +47,15 @@
                                     <td class="hidetext">{{$user->password}}</td>
                                     <td>
                                         <div class="btn-group ">
-                                            <a href="{{ route('editarusers',['id'=>$user->id]) }}">
-                                            <button type="button" class="btn btn-outline-dark">
-                                                <i class="bi bi-brush"></i>
-                                            </button>
-                                            </a>
+                                                <a href="{{ route('editarusers',['id'=>$user->id]) }}">
+                                                    <button type="button" class="btn btn-outline-dark">
+                                                        <i class="bi bi-brush"></i>
+                                                    </button>
+                                                </a>
                                             &nbsp;
-                                            @if ($user->id > 1)
                                                 <a class="btn btn-outline-dark" onclick="confirmationdiableduser(event)" href="{{ route('deshabilitarusers',['id'=>$user->id]) }}">
                                                     <i class="bi bi-eye-slash"></i>
                                                 </a>
-                                            @endif
                                         </div>
                                     </td>
                                 </tr>

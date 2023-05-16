@@ -1,6 +1,7 @@
 @extends('template.index')
 
 @section('contenido')
+@include('sweetalert::alert')
 
 <!-- Mensaje de crear ticket -->
 @if (session()->has('mensaje'))
@@ -108,7 +109,7 @@
             <h1 class="card-title" style="text-align: center; color:white;">{{ $usersDisabled }}</h1>
         </div>
         <div class="card-footer d-flex justify-content-center">
-            <a href="#">
+            <a href="{{ route('disabledusers') }}">
                 <button type="button" class="btn btn-secondary"><b>Ver</b></button>
             </a>
         </div>

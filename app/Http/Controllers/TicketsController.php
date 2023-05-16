@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\GuardarCambiosTicketRequest;
+use App\Http\Requests\GuardarTicketRequest;
 use App\Models\Adjunto;
 use App\Models\User;
 use App\Models\Ticket;
@@ -19,6 +22,14 @@ class TicketsController extends Controller
         $tickets= Ticket::all();
         return view('tickets.vertickets')->with('tickets',$tickets);
     }
+    public function misticketsasignados($id){
+        $tickets = Ticket::where('asignado',$id)->get();
+        return view('tickets.mistickets')->with('tickets',$tickets);
+    }
+    public function misticketscreados($id){
+        $tickets = Ticket::where('id_user',$id)->get();
+        return view('tickets.misticketscreados')->with('tickets',$tickets);
+    }
     public function verticket($id){
         $ticket = Ticket::where('id',$id)->first();
         $user = User::withTrashed()->where('id', $id)->first();
@@ -32,22 +43,13 @@ class TicketsController extends Controller
     public function crearticket(){
         $estados = Estado::all();
         $prioridades  = Prioridad::all();
-        $users = user::all();
+        $users = User::all();
         return view('tickets.crearticket')->with('estados',$estados)
                                             ->with('prioridades',$prioridades)
                                             ->with('users',$users);
     }
 
-    public function guardarticket(Request $request){
-        $this->validate($request,[
-            'id_user' => 'required',
-            'asignado' => 'required',
-            'titulo' => 'required',
-            'descripcion' => 'required',
-            'id_estado' => 'required|regex:/^[0-9]{1}$/',
-            'id_prioridad' => 'required|regex:/^[0-9]{1}$/',
-            ]);
-    
+    public function guardarticket(GuardarTicketRequest $request){
         $id_user = $request->id_user;
         $asignado = $request->asignado;
         $estado = $request->id_estado;
@@ -72,7 +74,7 @@ class TicketsController extends Controller
 
             for ($i = 0; $i < count($adjuntos); $i++){
                 $rutasdb = "/adjuntos/";
-                $ruta = "/Applications/XAMPP/xamppfiles/htdocs/Rtickets/public/adjuntos";
+                $ruta = public_path('adjuntos');
 
                 $filename = $id_ticket . $adjuntos[$i]->getClientOriginalName();
                 $rutasdb .= $filename;
@@ -102,17 +104,7 @@ class TicketsController extends Controller
         return view('tickets.editarticket', compact('ticket','users','estados','prioridades','adjuntos'));
     }
 
-    public function guardarcambiosticket(Request $request){
-        $this->validate($request,[
-            'id' => 'required',
-            'id_user' => 'required',
-            'asignado' => 'required',
-            'titulo' => 'required',
-            'descripcion' => 'required',
-            'id_estado' => 'required|regex:/^[0-9]{1}$/',
-            'id_prioridad' => 'required|regex:/^[0-9]{1}$/',
-            'updated_by' => 'required'
-            ]);
+    public function guardarcambiosticket(GuardarCambiosTicketRequest $request){
             $id = $request->id;
             $id_user = $request->id_user;
             $id_estado = $request->id_estado;
@@ -138,7 +130,7 @@ class TicketsController extends Controller
     
                 for ($i = 0; $i < count($adjuntos); $i++){
                     $rutasdb = "/adjuntos/";
-                    $ruta = "/Applications/XAMPP/xamppfiles/htdocs/Rtickets/public/adjuntos";
+                    $ruta = public_path('adjuntos');
     
                     $filename = $id . $adjuntos[$i]->getClientOriginalName();
                     $rutasdb .= $filename;

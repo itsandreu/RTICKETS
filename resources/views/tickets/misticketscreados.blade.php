@@ -10,7 +10,7 @@
                 <button type="button" class="btn btn-secondary"><b>Nuevo Ticket</b></button>
             </a>
         </div>
-        <h4 class=" justify-content-start font-weight-bold text-dark-emphasis" style="color:aliceblue;"><b>TICKETS</b></h6>
+        <h4 class=" justify-content-start font-weight-bold text-dark-emphasis" style="color:aliceblue;"><b>MIS TICKETS</b></h6>
         <div class="float-start m-0">
         </div>
     </div>

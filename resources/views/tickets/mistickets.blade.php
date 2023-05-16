@@ -10,11 +10,10 @@
                 <button type="button" class="btn btn-secondary"><b>Nuevo Ticket</b></button>
             </a>
         </div>
-        <h4 class=" justify-content-start font-weight-bold text-dark-emphasis" style="color:aliceblue;"><b>TICKETS</b></h6>
+        <h4 class=" justify-content-start font-weight-bold text-dark-emphasis" style="color:aliceblue;"><b> MIS ASIGNADOS</b></h6>
         <div class="float-start m-0">
         </div>
     </div>
-    
     <div class="card-body">
         <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">

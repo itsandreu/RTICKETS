@@ -20,16 +20,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-
-
 //AUTH
 Route::prefix('auth')->group(function(){
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'loginVerify'])->name('login.verify');
     Route::get('signout',[AuthController::class,'signout'])->name('signout');
-    
 });
 
 //PROTEGIDOS
@@ -38,23 +35,25 @@ Route::middleware('auth')->group(function(){
     //dashboard
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-    //usuarios
-    
-    //Route::get('register',[AuthController::class,'register'])->name('register');
-    //Route::post('register',[AuthController::class,'registerverify'])->name('register.verify');
-
+    //Usuarios
     Route::get('users', [UsersController::class, 'verusers'])->name('users');
+    Route::get('veruser/{id}', [UsersController::class, 'veruser'])->name('veruser');
+
     Route::get('editarusers/{id}', [UsersController::class, 'editarusers'])->name('editarusers');
     Route::post('guardarcambiosuser', [UsersController::class, 'guardarcambiosuser'])->name('guardarcambiosuser');
-    Route::get('deshabilitarusers/{id}', [UsersController::class, 'deshabilitarusers'])->name('deshabilitarusers');
     Route::get('disabledusers', [UsersController::class, 'disabledusers'])->name('disabledusers');
-    Route::get('activarusers/{id}', [UsersController::class, 'activarusers'])->name('activarusers');
     route::get('eliminarusers/{id}',[UsersController::class, 'eliminarusers'])->name('eliminarusers');
+    Route::get('activarusers/{id}', [UsersController::class, 'activarusers'])->name('activarusers');
+    Route::get('deshabilitarusers/{id}', [UsersController::class, 'deshabilitarusers'])->name('deshabilitarusers');
+
+
 
     //tickets 
 
     Route::get('tickets', [TicketsController::class, 'vertickets'])->name('tickets');
     Route::get('verticket/{id}',[TicketsController::class, 'verticket'])->name('verticket');
+    Route::get('misticketsasignados/{id}',[TicketsController::class, 'misticketsasignados'])->name('misticketsasignados');
+    Route::get('misticketscreados/{id}',[TicketsController::class, 'misticketscreados'])->name('misticketscreados');
     Route::get('crearticket', [TicketsController::class, 'crearticket'])->name('crearticket');
     Route::post('guardarticket', [TicketsController::class, 'guardarticket'])->name('guardarticket');
     Route::get('eliminarticket/{id}', [TicketsController::class, 'eliminarticket'])->name('eliminarticket');

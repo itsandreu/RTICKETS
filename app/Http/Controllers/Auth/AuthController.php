@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginVerifyRequest;
+use App\Http\Requests\RegisterVerifyRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,30 +24,11 @@ class AuthController extends Controller
     public function register(){
         return view('auth.register');
     }
-    public function registerVerify(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'apellidos' => 'required',
-            'nacimiento' => 'required',
-            'dni' => 'required|unique:users,dni',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password'
-        ],[
-            'name.required' => 'El nombre es requerido',
-            'apellidos.required' => 'El Apellido es requerido',
-            'nacimiento.required' => 'La fecha de nacimiento es requerida',
-            'dni.required' => 'El dni es requerido',
-            'dni.unique' => 'Este dni ya existe',
-            'email.required' => 'El email es requerido',
-            'email.unique' => 'El email ya esta en uso',
-            'password.required' => 'La contraseña es requerida'
-        ]);
-        
+    public function registerVerify(RegisterVerifyRequest $request){
         if($request->file('foto')){
             if($request->file('foto')){
                 $file = $request->file('foto');
-                $ruta = "/Applications/XAMPP/xamppfiles/htdocs/Rtickets/public/fotos";
+                $ruta = public_path('fotos');
                 $filename = time() . '-' . $file->getClientOriginalName();
                 $rutadb = "/fotos/". $filename;
                 $request->file('foto')->move($ruta,$filename);
@@ -72,16 +55,7 @@ class AuthController extends Controller
     public function login(){
         return view('auth.login');
     }
-    public function loginverify(Request $request){
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ],[
-            'email.required' => 'El email es requerido',
-            'email.unique' => 'El email ya esta en uso',
-            'password.required' => 'La contraseña es requerida'
-        ]);
-
+    public function loginverify(LoginVerifyRequest $request){
         if ($request->input('remember_token')) {
             $remember = true;
         } else {

@@ -88,17 +88,19 @@ $url_base = "/RTICKETS/public/"
                         <ul class="navbar-nav fs-7 justify-content-evenly">
                             <li class="nav-item p-3 py-md-0"><a href="{{ route('dashboard') }}" class="nav-link text-white"><b>Dashboard</b></a></li>
                             <li class="nav-item p-3 py-md-0"><a href="{{ route('tickets') }}" class="nav-link text-white"><b>Tickets</b></a></li>
-                            <li class="nav-item p-3 py-md-0"><a href="#" class="nav-link text-white"><b>Mis Tickets</b></a></li>
+                            <li class="nav-item p-3 py-md-0"><a href="{{ route('misticketsasignados',['id'=>Auth::user()->id])}}" class="nav-link text-white"><b>Mis Asignados</b></a></li>
+                            <li class="nav-item p-3 py-md-0"><a href="{{ route('misticketscreados',['id'=>Auth::user()->id])}}" class="nav-link text-white"><b>Mis Ticket</b></a></li>
                             <li class="nav-item p-3 py-md-0"><a href="{{ route('users') }}" class="nav-link text-white"><b>Usuarios</b></a></li>
+                            <li class="nav-item p-3 py-md-0"><a href="{{ route('veruser',['id'=>Auth::user()->id])}}" class="nav-link text-white"><b>Perfil</b></a></li>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{ Auth::user()->url_foto }}" alt="" width="20" height="20">
                                     {{ Auth::user()->name }}&nbsp;{{ Auth::user()->apellidos }}
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                                    <li><a class="dropdown-item" href="#">Mis Tickets</a></li>
-                                    <li><a class="dropdown-item post-link" data-action="" href="{{ route('signout') }}">Cerrar Sesion</a></li>
+                                    <li><a class="dropdown-item" href="{{route('veruser',['id'=>Auth::user()->id])}}">Perfil</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('misticketscreados',['id'=>Auth::user()->id])}}">Mis Tickets</a></li>
+                                    <li><a class="dropdown-item post-link" data-action="" href="{{ route('signout') }}" style="color: red;">Cerrar Sesion</a></li>
                                 </ul>
                             </div>
                         </ul>

@@ -1,6 +1,7 @@
 @extends('template.index')
 
 @section('contenido')
+@include('sweetalert::alert')
 <form action="{{ route('guardarcambiosuser') }}" method="post" enctype='multipart/form-data'>
     @csrf
     <div class="row">
@@ -62,7 +63,7 @@
                                 </label>
                                 <br>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" value="{{$consulta->password}}" id="password" name="password" placeholder="Escriba una Contraseña">
+                                    <input type="password" class="form-control" value="" id="password" name="password" placeholder="Escriba una Contraseña">
                                 </div>
                                 <br>
                                 <div class="mb-3">

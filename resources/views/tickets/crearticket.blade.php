@@ -45,7 +45,7 @@
                                         @endforeach
                                     </select>
                                 <br>
-                                    <label for="adjuntos" class="form-label"><h5>Adjuntos:</h5></label>
+                                    <label for="adjuntos" class="form-label"><h5>Adjuntos: (Imagenes y archivos)</h5></label>
                                         @if ($errors->first('adjuntos'))
                                         <p class="text-danger"> {{$errors->first('adjuntos')}}</p>
                                         @endif
