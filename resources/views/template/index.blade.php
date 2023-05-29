@@ -1,6 +1,3 @@
-<?php
-$url_base = "/RTICKETS/public/"
-?>
 <!doctype html>
 <html lang="es">
 

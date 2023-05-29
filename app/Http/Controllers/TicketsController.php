@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-
 class TicketsController extends Controller
 {
     public function vertickets(){
