@@ -1,5 +1,4 @@
 @extends('template.index')
-
 @section('contenido')
 @include('sweetalert::alert')
 <form action="{{ route('guardarcambiosuser') }}" method="post" enctype='multipart/form-data'>

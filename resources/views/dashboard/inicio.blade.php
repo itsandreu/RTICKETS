@@ -1,8 +1,6 @@
 @extends('template.index')
-
 @section('contenido')
 @include('sweetalert::alert')
-
 <!-- Mensaje de crear ticket -->
 @if (session()->has('mensaje'))
 <div class="alert alert-success pb-1 ms-5 me-5"  role="alert">

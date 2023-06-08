@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="es">
-
 <head>
     <title>Gestor de Tickets</title>
     <!-- Required meta tags -->
@@ -13,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/lumen/bootstrap.min.css" rel="stylesheet">
     @include('sweetalert::alert')
-
 </head>
 <style>
     nav,
@@ -43,7 +41,6 @@
         box-shadow: none;
         color: #f79256;
     }
-
     /* Ocultar campo de contraseña */
     .hidetext { -webkit-text-security: disc; /* Default */ }
 
